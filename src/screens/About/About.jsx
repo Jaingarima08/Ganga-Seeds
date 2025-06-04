@@ -3,8 +3,17 @@ import aboutImage from "../../assets/images/About.png";
 import { Player } from "@lottiefiles/react-lottie-player";
 import farmAnimation from "../../assets/animations/Animation - 1749016395698.json";
 import OurMissionModel from "./OurMissionModel";
+import { FaSeedling, FaLightbulb, FaLeaf, FaTruck } from "react-icons/fa";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+
 
 const About = () => {
+  useEffect(() => {
+  AOS.init({ duration: 800 });
+}, []);
+
   return (
     <div className="text-gray-800 pt-[111px]">
       {/* Hero Section */}
@@ -58,17 +67,34 @@ const About = () => {
      <OurMissionModel/>
 
       {/* What We Do */}
-      <section className="max-w-5xl mx-auto px-6 py-10">
-        <h2 className="text-2xl font-semibold mb-4">What We Do</h2>
-        <ul className="list-disc pl-5 space-y-2 text-lg">
-          <li>
-            Provide premium-quality seeds for vegetables, legumes, and cereals
-          </li>
-          <li>Offer seasonal guidance and best farming practices</li>
-          <li>Support sustainable and organic farming techniques</li>
-          <li>Deliver products across India to farmers' doorsteps</li>
-        </ul>
-      </section>
+   <section className="max-w-6xl mx-auto px-6 py-10">
+  <div className="bg-green-50 rounded-xl p-6 md:p-10 shadow-md" data-aos="fade-up">
+    <h2 className="text-3xl font-bold text-green-700 mb-6 text-center md:text-left">
+      What We Do
+    </h2>
+    <ul className="space-y-6 text-gray-800 text-base md:text-lg">
+      <li className="flex items-start gap-4 hover:text-green-700 transition-all duration-300">
+        <FaSeedling className="text-green-600 mt-1 text-xl" />
+        <span>
+          Provide premium-quality seeds for vegetables, legumes, and cereals
+        </span>
+      </li>
+      <li className="flex items-start gap-4 hover:text-green-700 transition-all duration-300">
+        <FaLightbulb className="text-green-600 mt-1 text-xl" />
+        <span>Offer seasonal guidance and best farming practices</span>
+      </li>
+      <li className="flex items-start gap-4 hover:text-green-700 transition-all duration-300">
+        <FaLeaf className="text-green-600 mt-1 text-xl" />
+        <span>Support sustainable and organic farming techniques</span>
+      </li>
+      <li className="flex items-start gap-4 hover:text-green-700 transition-all duration-300">
+        <FaTruck className="text-green-600 mt-1 text-xl" />
+        <span>Deliver products across India to farmers' doorsteps</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
 
       {/* Why Choose Us */}
       <section className="bg-white px-6 py-10">
