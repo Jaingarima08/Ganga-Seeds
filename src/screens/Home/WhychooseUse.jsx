@@ -34,7 +34,7 @@ const WhychooseUse = () => {
         {features.map((feature) => (
           <div
             key={feature.id}
-            className=" p-6 text-center"
+            className="p-6 text-center"
           >
             <div className="text-green-600 text-4xl mb-4">
               <FontAwesomeIcon icon={feature.icon} />

@@ -1,5 +1,8 @@
-import React from "react";
-import aboutImage from "../assets/images/About.png";
+
+import aboutImage from "../../assets/images/About.png";
+import { Player } from "@lottiefiles/react-lottie-player";
+import farmAnimation from "../../assets/animations/Animation - 1749016395698.json";
+import OurMissionModel from "./OurMissionModel";
 
 const About = () => {
   return (
@@ -15,37 +18,44 @@ const About = () => {
       </div>
 
       {/* Our Story */}
-      <section className="px-6 py-10 md:px-14">
-        <h2 className="text-2xl font-semibold mb-4">Our Story</h2>
-        <p className="text-lg leading-relaxed">
-          Founded with a deep respect for farmers and their contribution to
-          society, our mission is to make quality seeds, tools, and knowledge
-          accessible to every cultivator. We aim to revolutionize agriculture
-          through sustainable practices, innovation, and a commitment to
-          excellence.
-        </p>
-      </section>
-
-      {/* Mission & Vision */}
-      <section className="bg-green-100 px-6 py-10 md:px-14">
-        <div className="grid md:grid-cols-2 gap-8 px-4">
-          <div className="text-center max-w-xl">
-            <h3 className="text-xl font-semibold mb-2">Our Mission</h3>
-            <p className="max-w-lg">
-              To empower farmers with high-quality agricultural inputs and
-              up-to-date guidance, enabling them to increase yields and improve
-              livelihoods sustainably.
-            </p>
+      <section className="px-6 py-12 md:px-14 bg-white text-gray-800">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-10 py-4">
+          {/* Lottie Animation */}
+          <div className="w-full md:w-1/2 flex justify-center">
+            <div className="bg-green-100 p-6 rounded-xl shadow-md">
+              <Player
+                src={farmAnimation}
+                autoplay
+                loop
+                style={{ height: "250px", width: "250px" }}
+              />
+            </div>
           </div>
-          <div className="text-center max-w-xl">
-            <h3 className="text-xl font-semibold mb-2">Our Vision</h3>
-            <p className="max-w-lg">
-              A future where agriculture is both profitable and sustainable, and
-              where every farmer has the resources they need to thrive.
+
+          {/* Text Content */}
+          <div className="w-full md:w-1/2">
+            <h2 className="text-3xl font-bold mb-4 text-center md:text-left">
+              Our Story
+            </h2>
+            <p className="leading-relaxed text-justify text-base px-1">
+              With deep respect for the agricultural community, our mission is
+              to empower cultivators by delivering premium seeds, advanced
+              tools, and expert knowledge. We are committed to driving
+              agricultural transformation through sustainability, innovation,
+              and service excellence.
+              <br />
+              <br />
+              Our goal is to foster resilient farming practices that protect the
+              environment while maximizing yield and profitability. By embracing
+              cutting-edge technology and traditional wisdom, we strive to build
+              a future where every farmer thrives and rural communities flourish
+              with opportunity and dignity.
             </p>
           </div>
         </div>
       </section>
+
+     <OurMissionModel/>
 
       {/* What We Do */}
       <section className="max-w-5xl mx-auto px-6 py-10">
@@ -56,7 +66,7 @@ const About = () => {
           </li>
           <li>Offer seasonal guidance and best farming practices</li>
           <li>Support sustainable and organic farming techniques</li>
-          <li>Deliver products across India to farmers’ doorsteps</li>
+          <li>Deliver products across India to farmers' doorsteps</li>
         </ul>
       </section>
 
