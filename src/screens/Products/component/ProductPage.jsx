@@ -17,7 +17,7 @@ const ProductPage = () => {
   });
 
   return (
-    <div className="flex flex-col md:flex-row">
+    <div className="flex flex-col md:flex-row ">
       <ProductSidebar
         categories={categories}
         months={months}

@@ -35,7 +35,7 @@ const productData = [
 
 export default function ProductCard() {
   return (
-    <div className="px-6 py-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 -translate-y-20">
+    <div className="px-6 py-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 -translate-y-5">
       {productData.map((product) => (
         <Card key={product.id} sx={{ maxWidth: 345 }}>
           <CardActionArea>
@@ -44,6 +44,7 @@ export default function ProductCard() {
               sx={{ height: 300, objectFit: "cover", padding: 1 }}
               image={product.image}
               alt={product.title}
+              loading='lazy'
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div" className='h-10'>

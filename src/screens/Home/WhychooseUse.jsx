@@ -28,19 +28,19 @@ const features = [
 
 const WhychooseUse = () => {
   return (
-    <div className="px-6 ">
+    <div className="py-10 px-6 md:px-14 lg:px-20 bg-white">
       <h1 className="text-3xl font-bold text-center mb-10">Why Choose Us?</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {features.map((feature) => (
           <div
             key={feature.id}
-            className="p-6 text-center"
+            className="bg-green-50 p-6 rounded-lg text-center shadow-sm hover:shadow-md transition duration-300"
           >
-            <div className="text-green-600 text-4xl mb-4">
+            <div className="text-green-600 text-5xl mb-4">
               <FontAwesomeIcon icon={feature.icon} />
             </div>
             <h2 className="text-xl font-semibold mb-2">{feature.title}</h2>
-            <p className="text-gray-600">{feature.description}</p>
+            <p className="text-gray-700 text-sm">{feature.description}</p>
           </div>
         ))}
       </div>

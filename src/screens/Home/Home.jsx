@@ -5,7 +5,7 @@ import WhychooseUse from "./WhychooseUse"
 
 const Home = () => {
   return (
-    <div className="pt-[111px]">
+    <div className="pt-[80px] sm:pt-[100px] md:pt-[111px]">
       <ImageSlider/>
       <Content/>
       <SessionalProducts/>

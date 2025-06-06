@@ -1,169 +1,151 @@
 import React, { useState, useEffect } from "react";
 import { FaLinkedin, FaBars, FaTimes } from "react-icons/fa";
-// import logo from "../../assets/GEMBA_LOGO.png";
 import { NavLink } from "react-router-dom";
+import "../components/Header.jsx";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false); 
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen); // Toggle mobile menu visibility
+    setMenuOpen(!menuOpen);
   };
 
+  useEffect(() => {
+  const interval = setInterval(() => {
+    const bannerFrame = document.querySelector(".goog-te-banner-frame");
+
+    if (bannerFrame) {
+      const bannerHeight = bannerFrame.offsetHeight;
+      document.body.style.paddingTop = `${bannerHeight}px`;
+    } else {
+      document.body.style.paddingTop = "0px";
+    }
+  }, 500);
+
+  return () => clearInterval(interval);
+}, []);
+
+
+
+  const linkClasses = ({ isActive }) =>
+    `p-2 rounded transition duration-500 ease-in-out transform flex items-center ${
+      isActive ? "text-green-600 font-bold" : "hover:text-green-500"
+    }`;
+
   return (
-    <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? "shadow-md bg-white" : "bg-transparent"
-        }`}
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 pt-10 ${
+        scrolled ? "shadow-md bg-white" : "bg-transparent"
+      }`}
+    >
+      {/* Topbar */}
+      <div
+        className={`bg-green-500 text-white ${scrolled ? "hidden" : "block"}`}
       >
-        {/* Topbar */}
-        <div
-          className={`bg-green-500 text-white ${scrolled ? "hidden" : "block"}`}
-        >
-          <div className="container mx-auto flex justify-end md:justify-end py-2 px-6 flex-wrap md:flex-nowrap">
-            {/* Contact Section */}
-            <div className="flex flex-row md:flex-row space-x-4 space-y-0 md:space-y-0 md:space-x-4 lg:items-center">
-
-              {/* LinkedIn Tab */}
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center"
-              >
-                <FaLinkedin className="text-lg" />
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Menubar */}
-        <div
-          className={`bg-white font-sans shadow-md duration-1000 ${
-            scrolled ? "mt-0" : "mt-0"
-          }`}
-        >
-          <div className="container mx-auto flex justify-between items-center py-4 px-4">
-            <div className="flex-shrink-0">
-              {/* <img src="" alt="Logo" className="h-10 w-auto" />
-               */}
-               <a href="/" className="text-2xl font-bold text-green-500">GangaSeeds</a>
-            </div>
-
-            {/* Hamburger Icon for mobile */}
-            <div className="md:hidden">
-              <button
-                onClick={toggleMenu}
-                className="text-2xl focus:outline-none"
-              >
-                {menuOpen ? <FaTimes /> : <FaBars />}
-                {/* Toggle between hamburger and close icon */}
-              </button>
-            </div>
-
-            {/* Menu Items - Hidden on mobile */}
-            <div className={`hidden md:flex space-x-6`}>
-              <div className="text-lg font-semibold flex space-x-1 items-center ">
-                <NavLink
-                  className="p-2 rounded transition duration-500 ease-in-out transform hover:text-green-500 flex items-center"
-                  to="/"
-                  activeClassName="bg-white"
-                >
-                  Home
-                </NavLink>
-                <NavLink
-                  className="p-2 rounded transition duration-500 ease-in-out transform hover:text-green-500 flex items-center"
-                  to="/about"
-                  activeClassName="bg-white"
-                >
-                  About us
-                </NavLink>
-                <NavLink
-                  className="p-2 rounded transition duration-500 ease-in-out transform hover:text-green-500 flex items-center"
-                  to="/product"
-                  activeClassName="bg-white"
-                >
-                  Products
-                </NavLink>
-                <NavLink
-                  className="p-2 rounded transition duration-500 ease-in-out transform hover:text-green-500 flex items-center"
-                  to="/career"
-                  activeClassName="bg-white"
-                >
-                  Career
-                </NavLink>
-                <NavLink
-                  className="p-2 rounded transition duration-500 ease-in-out transform hover:text-green-500 flex items-center"
-                  to="/contact"
-                  activeClassName="bg-white"
-                >
-                  Contact us
-                </NavLink>
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile Menu */}
+        <div className="container mx-auto flex justify-end items-center gap-4 py-2 px-6 ">
+          {/* Google Translate container with Tailwind styling */}
           <div
-            className={`md:hidden ${
-              menuOpen ? "block" : "hidden"
-            } bg-white shadow-md text-center py-4`}
+            id="google_translate_element"
+            class="text-xs bg-white text-black rounded-md shadow-md "
+          ></div>
+
+          {/* LinkedIn Icon */}
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center hover:text-gray-200"
           >
-            <NavLink
-              className="block py-2 text-lg font-semibold"
-              to="/"
-              onClick={() => setMenuOpen(false)}
+            <FaLinkedin className="text-lg" />
+          </a>
+        </div>
+      </div>
+
+      {/* Menubar */}
+      <div className="bg-white font-sans shadow-md">
+        <div className="container mx-auto flex justify-between items-center py-4 px-4">
+          {/* Logo */}
+          <a href="/" className="text-2xl font-bold text-green-500">
+            GangaSeeds
+          </a>
+
+          {/* Hamburger */}
+          <div className="md:hidden">
+            <button
+              onClick={toggleMenu}
+              className="text-2xl focus:outline-none"
             >
+              {menuOpen ? <FaTimes /> : <FaBars />}
+            </button>
+          </div>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex space-x-6 text-lg font-semibold">
+            <NavLink to="/" className={linkClasses}>
               Home
             </NavLink>
-            <NavLink
-              className="block py-2 text-lg font-semibold"
-              to="/about"
-              onClick={() => setMenuOpen(false)}
-            >
+            <NavLink to="/about" className={linkClasses}>
               About us
             </NavLink>
-            <NavLink
-              className="block py-2 text-lg font-semibold"
-              to="/product"
-              onClick={() => setMenuOpen(false)}
-            >
+            <NavLink to="/product" className={linkClasses}>
               Products
             </NavLink>
-            <NavLink
-              className="block py-2 text-lg font-semibold"
-              to="/career"
-              onClick={() => setMenuOpen(false)}
-            >
-              Career
-            </NavLink>
-            <NavLink
-              className="block py-2 text-lg font-semibold"
-              to="/contact"
-              onClick={() => setMenuOpen(false)}
-            >
+            {/* <NavLink to="/career" className={linkClasses}>Career</NavLink> */}
+            <NavLink to="/contact" className={linkClasses}>
               Contact us
             </NavLink>
-           
           </div>
         </div>
-      </nav>
-    </>
+
+        {/* Mobile Menu */}
+        <div
+          className={`md:hidden ${
+            menuOpen ? "block" : "hidden"
+          } bg-white shadow-md text-center py-4`}
+        >
+          <NavLink
+            to="/"
+            className={linkClasses}
+            onClick={() => setMenuOpen(false)}
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={linkClasses}
+            onClick={() => setMenuOpen(false)}
+          >
+            About us
+          </NavLink>
+          <NavLink
+            to="/product"
+            className={linkClasses}
+            onClick={() => setMenuOpen(false)}
+          >
+            Products
+          </NavLink>
+          {/* <NavLink to="/career" className={linkClasses} onClick={() => setMenuOpen(false)}>
+            Career
+          </NavLink> */}
+          <NavLink
+            to="/contact"
+            className={linkClasses}
+            onClick={() => setMenuOpen(false)}
+          >
+            Contact us
+          </NavLink>
+        </div>
+      </div>
+    </nav>
   );
 };
 

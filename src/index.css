@@ -1,1 +1,20 @@
 @import "tailwindcss";
+
+#google_translate_element {
+  /* Hide Google Translate top banner and logo */
+  .goog-logo-link,
+  .goog-te-gadget span,
+  .goog-te-banner-frame.skiptranslate {
+    display: none !important;
+  }
+
+ body {
+  transition: padding-top 0.3s ease-in-out;
+}
+
+  /* Optional: remove Google Translate frame border */
+  #goog-gt-tt,
+  .goog-te-balloon-frame {
+    display: none !important;
+  }
+}
