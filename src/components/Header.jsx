@@ -5,7 +5,12 @@ import "../components/Header.jsx";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  // const [menuOpen, setMenuOpen] = useState(false);
+ const [menuOpen, setMenuOpen] = useState(() => {
+  const saved = localStorage.getItem("menuOpen");
+  return saved !== null ? JSON.parse(saved) : false;
+});
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +23,11 @@ const Navbar = () => {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  useEffect(() => {
+  localStorage.setItem("menuOpen", JSON.stringify(menuOpen));
+}, [menuOpen]);
+
 
   useEffect(() => {
   const interval = setInterval(() => {
@@ -51,11 +61,11 @@ const Navbar = () => {
       <div
         className={`bg-green-500 text-white ${scrolled ? "hidden" : "block"}`}
       >
-        <div className="container mx-auto flex justify-end items-center gap-4 py-2 px-6 ">
+        <div className="container mx-auto flex justify-end items-center gap-4 py-1 px-6 ">
           {/* Google Translate container with Tailwind styling */}
           <div
             id="google_translate_element"
-            class="text-xs bg-white text-black rounded-md shadow-md "
+            className="text-xs bg-white text-black"
           ></div>
 
           {/* LinkedIn Icon */}
@@ -71,7 +81,7 @@ const Navbar = () => {
       </div>
 
       {/* Menubar */}
-      <div className="bg-white font-sans shadow-md">
+      <div className="bg-white shadow-md">
         <div className="container mx-auto flex justify-between items-center py-4 px-4">
           {/* Logo */}
           <a href="/" className="text-2xl font-bold text-green-500">

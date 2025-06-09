@@ -1,31 +1,39 @@
+import React, { Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/footer/Footer";
-import Home from "./screens/Home/Home";
-import About from "./screens/About/About";
-import Contact from "./screens/Contact";
-import Career from "./screens/Career";
-import Product from "./screens/Products/Products";
 import ScrollToTop from "./components/ScrollToTop";
+
+// Lazy load your pages
+const Home = React.lazy(() => import('./screens/Home/Home'));
+const About = React.lazy(() => import('./screens/About/About'));
+const Contact = React.lazy(() => import('./screens/Contact'));
+const Product = React.lazy(() => import('./screens/Products/Products'));
+const Career = React.lazy(() => import('./screens/Career'));
+
+
 
 function App() {
   return (
     <Router>
-      <div className="flex flex-col min-h-screen">
-        <Header />
-        <ScrollToTop/>
-        <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/product" element={<Product />} />
-             <Route path="/career" element={<Career />} />
+        <div className="flex flex-col min-h-screen">
+          <Header />
+          <ScrollToTop />
+          <main className="flex-grow">
+           <Suspense fallback={<div>Loading Page...</div>}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/product" element={<Product />} />
+              <Route path="/career" element={<Career />} />
               <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
+            </Routes>
+             </Suspense>
+          </main>
 
-        <Footer />
-      </div>
+          <Footer />
+        </div>
+     
     </Router>
   );
 }
