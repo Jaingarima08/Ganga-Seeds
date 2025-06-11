@@ -1,20 +1,38 @@
 @import "tailwindcss";
 
-#google_translate_element {
-  /* Hide Google Translate top banner and logo */
-  .goog-logo-link,
-  .goog-te-gadget span,
-  .goog-te-banner-frame.skiptranslate {
-    display: none !important;
-  }
 
- body {
-  transition: padding-top 0.3s ease-in-out;
+/* Hide Google Translate's top banner */
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+body {
+  top: 0px !important;
 }
 
-  /* Optional: remove Google Translate frame border */
-  #goog-gt-tt,
-  .goog-te-balloon-frame {
-    display: none !important;
-  }
+/* Hide unwanted iframe elements */  
+/* .goog-logo-link,
+.goog-te-gadget span{
+  display: none !important;
 }
+
+
+.goog-te-gadget {
+  color: transparent !important;
+  font-size: 0 !important;
+} */
+
+/* Hide Google Translate's default dropdown */
+.goog-te-combo {
+  display: none !important;
+}
+
+
+/* Optional: Customize dropdown */
+/* #google_translate_element select {   
+  background-color: white;
+  color: green-400;
+  border-radius: 5px;
+  padding: 4px;
+  font-size: 0.8rem;
+  border: 1px solid #ccc;
+} */

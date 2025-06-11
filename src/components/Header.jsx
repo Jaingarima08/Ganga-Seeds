@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaLinkedin, FaBars, FaTimes } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-import "../components/Header.jsx";
+import LanguageSelector from "./LanguageSelector";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -53,7 +53,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 pt-10 ${
+      className={`fixed top-0 left-0 right-0 z-[9999999] transition-all duration-300 ${
         scrolled ? "shadow-md bg-white" : "bg-transparent"
       }`}
     >
@@ -61,12 +61,11 @@ const Navbar = () => {
       <div
         className={`bg-green-500 text-white ${scrolled ? "hidden" : "block"}`}
       >
-        <div className="container mx-auto flex justify-end items-center gap-4 py-1 px-6 ">
-          {/* Google Translate container with Tailwind styling */}
-          <div
-            id="google_translate_element"
-            className="text-xs bg-white text-black"
-          ></div>
+        <div className="container mx-auto flex justify-end items-center gap-4 py-1 px-6 pt-10">
+          {/* <div
+            id="google_translate_element"          
+          ></div> */}
+          <LanguageSelector/>
 
           {/* LinkedIn Icon */}
           <a
@@ -81,8 +80,8 @@ const Navbar = () => {
       </div>
 
       {/* Menubar */}
-      <div className="bg-white shadow-md">
-        <div className="container mx-auto flex justify-between items-center py-4 px-4">
+     <div className="bg-white shadow-md z-[9999999]">
+        <div className="container mx-auto flex justify-between items-center py-2 px-4">
           {/* Logo */}
           <a href="/" className="text-2xl font-bold text-green-500">
             GangaSeeds
