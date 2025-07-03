@@ -29,8 +29,8 @@ const Contact = () => {
 
           <h3 className="text-2xl font-semibold text-green-700 mb-2">📞 Call Us</h3>
           <p className="text-gray-700 mb-4">
-            Phone: +91 9876543210<br />
-            Alternate: +91 9123456789
+            Phone: +91 1234567898<br />
+            Alternate: +91 1234567898
           </p>                                  
   
           <h3 className="text-2xl font-semibold text-green-700 mb-2">📧 Email Us</h3>
